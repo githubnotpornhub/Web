@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>将JQuery对象转换为JS对象</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			function domath() {
+				//JQuery对象是一个数组,使用jquery语法从数组的下标0里取出第一个dom对象
+				//廖姐给的另一种方法
+// 				const num=$("#inputnum").val();
+// 				const value=num * num;
+// 				$("#inputnum").val(value);
+				var obj = $("#inputnum").get(0);
+				//alert((obj.value)*(obj.value));
+// 				//alert(obj.value)
+ 
+				var num = obj.value;
+				obj.value = num * num;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="inputnum" placeholder="请输入数字" />
+		<input type="button"  value="计算平方" onclick="domath()" />
+	</body>
+</html>

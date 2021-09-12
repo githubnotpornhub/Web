@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>基本选择器的使用</title>
+
+		<style type="text/css">
+			div {
+				background-color: aqua;
+				width: 100px;
+				height: 30px;
+			}
+
+			.line2 {
+				background-color: chartreuse;
+			}
+		</style>
+		<script type="text/jscript" src="../jquery-3.4.1.js"></script>
+		<script type="text/jscript">
+			function fun1() {
+				var obj1 = $("#line1");//ID选择器
+				//使用Jquery改变样式
+				obj1.css("background", "red");
+
+			}
+
+			function fun2() {
+				var obj2 = $(".line2");//样式选择器
+				obj2.css("background", "gray");
+			}
+
+			function fun3() {
+				//jQuery操作的是数组中的全部成员，也就是全部div对象（前三行）
+                  var obj3 =$("div");//标签选择器
+				  obj3.css("background","gold");
+			}
+			
+			function fun4(){
+				//所有选择器是操作所有dom对象
+				var obj4=$("*");//所有选择器
+				obj4.css("background","aqua")
+				
+			}
+			
+			function fun5(){
+				//组合选择器
+				var obj5=$("#line1,span");//既根据ID，也根据标签来设置
+				obj5.css("background","yellow");
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="line1">第一行</div><br>
+		<div class="line2">第二行</div><br>
+		<div>第三行</div><br>
+		<span class="line2">第四行</span><br /><br />
+		<input type="button" value="id选择器" onclick="fun1()" /><br /><br />
+		<input type="button" value="样式选择器" onclick="fun2()" /><br /><br />
+		<input type="button" value="标签选择器" onclick="fun3()" /><br /><br />
+		<input type="button" value="所有选择器" onclick="fun4()" /><br /><br />
+		<input type="button" value="组合选择器" onclick="fun5()" />
+	</body>
+</html>

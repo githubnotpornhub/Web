@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单属性过滤器</title>
+		<style type="text/css">
+			.txt {
+				height: 20px;
+			}
+		</style>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#btn").click(function() {
+					var obj = $(":text:enabled");//enable启用状态的文本框
+					for (var i = 0; i < obj.length; i++) {
+						alert("文本框内的信息有：" + obj[i].value);
+					}
+				})
+				$("#btn2").click(function() {
+					var obj2 = $(":checkbox:checked");
+					for (var i = 0; i < obj2.length; i++) {
+						alert("用户喜欢的花有：" + obj2[i].value);
+					}
+				})
+				//下拉列表的表单属性过滤器使用方式与其他属性稍有不同 语法： #下拉列表id>option:selected
+				$("#btn3").click(function(){
+					var obj3=$("#city>option:selected");
+					alert("用户最喜欢的城市为："+obj3.val());
+				} )
+			})
+		</script>
+	</head>
+	<body>
+		<input type="text" class="txt" id="txt1" value="第一行字" /><br />
+		<input type="text" class="txt" id="txt2" value="第二行字" disabled="true" /><br />
+		<input type="text" class="txt" id="txt3" value="第三行字" disabled /><br />
+		<input type="text" class="txt" id="txt4" value="第四行字" /><br />
+		<br />
+		<input type="checkbox" value="桃花" checked="true" />桃花
+		<input type="checkbox" value="梨花" checked />梨花
+		<input type="checkbox" value="杏花" />杏花
+		<br /><br />
+		<select id="city" style="width: 6.25rem;height: 1.875rem;font-size: 1rem;">
+			<option value="南京">南京</option>
+			<option value="苏州" selected>苏州</option>
+			<option value="扬州">扬州</option>
+			<option value="无锡">无锡</option>
+			<option value="常州">常州</option>
+			<option value="杭州">杭州</option>
+		</select><br /><br />
+		<input type="button" id="btn" value="获取文本框内的内容" /><br />
+		<input type="button" id="btn2" value="获取复选框选中的内容" /><br />
+		<input type="button" id="btn3" value="获取下拉列表选中的内容" />
+	</body>
+</html>

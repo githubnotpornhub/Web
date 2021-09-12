@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>过滤器</title>
+		<style type="text/css">
+			div {
+				background-color: #00FFFF;
+			}
+		</style>
+		<script type="text/jscript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			//定义元素监听事件     语法：$(选择器.监听事件（处理函数）) 监听事件不用加on了
+		   //过滤器就是过滤条件，对已经定位到数组中 DOM 对象进行过滤筛选，过滤条件不能独立出现在 jquery 函数，
+		   //如果使用只能出现在选择器后方。
+			$(function() {
+				$("#btn").click(function() {
+					var obj1 = $("div:first");
+					obj1.css("background", "red");
+				})
+				$("#btn2").click(function() {
+                     var obj2=$("div:last");
+					 obj2.css("background","blue");
+				})
+				$("#btn3").click(function(){
+					var obj3=$("div:eq(3)");//好像只能一个
+					obj3.css("background","pink");
+				})
+				$("#btn4").click(function(){
+				    var obj4=$("div:lt(2)");
+						obj4.css("background","yellow");
+				})
+				$("#btn5").click(function(){
+					var obj5=$("div:gt(2)");
+					obj5.css("background","green");
+				})
+
+			})
+		</script>
+	</head>
+	<body>
+		<div>第一行</div>
+		<div>第二行</div>
+		<div>
+			<div>第三行</div>
+			<div>第四行</div>
+		</div>
+		<span>第五行</span><br />
+		<!--<button id="btn" value="获取第一个div标签"></button><br />-->
+		<input type="button" value="获取第一个div标签进行操作" id="btn" /><br />
+		<input type="button" value="获取最后的div标签进行操作" id="btn2" /><br />
+		<input type="button" value="获取选定的div标签进行操作" id="btn3" /><br />
+		<input type="button" value="获取小于值的div标签进行操作" id="btn4" /><br />
+		<input type="button" value="获取大于值的div标签进行操作" id="btn5" /><br />
+	</body>
+</html>

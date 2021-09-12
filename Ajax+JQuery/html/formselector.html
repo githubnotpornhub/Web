@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单选择器</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+
+          function fun1(){
+			  //表单选择器$(":type类型")
+			  var obj1=$(":text");
+			  alert("文本框里的内容为："+obj1.val());
+		  }
+		  
+		  function fun2(){
+			  var obj2=$(":radio");
+			  for(var i=0;i<obj2.length;i++){
+				  alert("radio的值有："+obj2[i].value);
+			  }
+		  }
+		  
+		  function fun3(){
+			  var obj3=$(":checkbox");
+			  for(var i=0;i<obj3.length;i++){
+				  alert("checkbox的值有："+obj3[i].value);
+			  }
+		  }
+		</script>
+	</head>
+	<body>
+		<input type="text" id="txt" value="无内容" /><br /><br />
+		<input type="radio" value="male" />男
+		<input type="radio" value="female" />女<br /><br />
+		<input type="checkbox" value="read" />阅读
+		<input type="checkbox" value="walk" />散步
+		<input type="checkbox" value="photograh" />摄影<br /><br />
+		<input type="button" value="提取文本框内容" onclick="fun1()" /><br /><br />
+		<input type="button" value="读取单选按钮内容" onclick="fun2()" /><br /><br />
+		<input type="button" value="读取复选框内容" onclick="fun3()" />
+	</body>
+</html>

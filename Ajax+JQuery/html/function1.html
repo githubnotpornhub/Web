@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>常用函数第一组</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//val函数无参时默认返回第一个对象的值
+				$("#btn").click(function() {
+					var obj = $(":text");
+					alert("文本框的第一行的值为：" + obj.val());
+				})
+				//val函数有参时将所有对象的值设为参数的值
+				$("#btn2").click(function() {
+					var obj2 = $(":text");
+					obj2.val("我知道这个世界每天都有太多遗憾，所以你好，再见。");
+					alert(obj2.val());
+				})
+				//text函数无参时将所有对象的值拼成一个字符串进行返回
+				$("#btn3").click(function() {
+					var obj3 = $("div");
+					alert("div的全部内容为：" + obj3.text());
+				})
+				//text函数有参数时将所有对象的属性值设置为参数的值
+				$("#btn4").click(function() {
+					var obj4 = $("div");
+					obj4.text("愿为西南风，长逝入君怀");
+				})
+				//设置指定属性的指定值
+				$("#btn5").click(function(){
+					var obj5=$("img");
+					obj5.attr("src","../img/001.jpg")
+				} )
+			})
+		</script>
+	</head>
+	<body>
+		<input type="text" value="分别总是在九月，" /><br />
+		<input type="text" value="回忆是思念的愁。" /><br />
+		<br /><br />
+		<div>人间四月芳菲尽，</div>
+		<div>山寺桃花始盛开。</div>
+		<div>长恨春归无觅处，</div>
+		<div>不知转入此中来。</div><br />
+		<img src="../img/002.png" /><br /><br />
+		<input type="button" id="btn" value="获取第一行文本框内的值" /><br />
+		<input type="button" id="btn2" value="为所有文本框设置值" /><br />
+		<input type="button" id="btn3" value="获取所有DIV的值并拼成字符串形式返回" /><br />
+		<input type="button" id="btn4" value="为所有div设置值" /><br />
+		<input type="button" id="btn5" value="替换图片" />
+	</body>
+</html>

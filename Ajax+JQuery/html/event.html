@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件绑定的两种方法</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script>
+		//方法一 $(选择器).监听事件名称(处理函数){处理方法}
+		//方法二 $(选择器).on("监听事件名称",处理函数){处理方法}   监听事件可有多个，用空格隔开
+		   $(function(){
+			   $("#btn").click(function(){
+				    $("div").append("   <input type='button' id='result' value='确定显示答案' />")  
+					 $("#result").on("click",function(){
+						 var obj=$("div");
+						 obj.text("最爱湖东行不足，绿杨阴里白沙堤。")
+					 })
+			   })
+		   })
+		</script>
+	</head>
+	<body>
+		<div id="poem">最爱湖东行不足,_______________。</div><br />
+		<input type="button" id="btn" value="展示答案" />
+	</body>
+</html>

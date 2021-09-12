@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>随便试试</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#btn").click(function() {
+					// var num = $(":text").val();
+					// var obj=$(":text");
+					// obj.val(num*num);
+					//用廖姐的代码
+					var num=$("#inputnum").val();
+					const result=num*num;
+					if(result){
+						$("#result").text("计算结果为");
+						$("#result").append(result);
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="输入任意数字" id="inputnum" />
+		<input type="button" id="btn" value="计算平方"  /><br /><br />
+		<div style="color: blue" id="result">计算结果为</div>
+	</body>
+</html>

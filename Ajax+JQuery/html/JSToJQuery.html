@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>将JS转换为JQuery对象</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			function dochange(){
+				
+				//获取dom对象
+				var obj=document.getElementById("btn");
+				alert("dom对象的属性为:"+obj.value);
+				
+				//把Dom对象转换为JQuery对象
+				var jobj=$(obj);
+				alert("jquery对象的属性为:"+jobj.val())
+				
+			}
+			function dochange2(){
+				
+				//获取Dom对象
+				var obj2=document.getElementById("btn2");
+				alert("按钮2的属性为:"+obj2.value);
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="btn" value="单击按钮" onclick="dochange()" />
+		<input type="button" id="btn2" value="单击按钮2" onclick="dochange2()" />
+	</body>
+</html>

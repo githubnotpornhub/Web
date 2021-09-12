@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>常用函数第二组</title>
+		<script type="text/javascript" src="../jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//使用remove函数删除所有父与子对象（select以及其子对象option）
+				$("#btn").click(function() {
+					var obj = $("select");
+					obj.remove();
+				})
+				//使用empty函数删除所有父对象的子对象（select的子对象option）
+				$("#btn2").click(function() {
+					var obj2 = $("select");
+					obj2.empty();
+				})
+				//使用append函数来动态地给页面增加新的dom对象
+				$("#btn3").click(function() {
+					var obj3 = $("div");
+					obj3.append("<div>一行白鹭上青天。</div>")
+				})
+				//使用html函数可以获取当前dom对象的源代码,而text函数只会显示文本内容
+				$("#btn4").click(function() {
+					var obj4 = $("span");
+					alert("获取当前源代码：" + obj4.html());
+					alert("获取当前dom对象的文本值：" + obj4.text())
+				})
+				//html函数里参数可以是源代码
+				$("#btn5").click(function() {
+					var obj5 = $("span");
+					obj5.html("又是一个<b style='color: #00FFFF;'>大傻逼</b>");
+				})
+				//使用each函数进行遍历
+				//语法1：$.each(要遍历的对象,function(index,element)){处理函数代码}
+				// 其中的index(数组的下标)和element(数组的对象)，可为任意名如i和e
+				//语法2：Jquery对象.each(function(index,element)){处理函数代码}
+				//遍历普通数组
+				$("#btn6").click(function() {
+					var arr = [1, 2, 3];
+					$.each(arr, function(index, Element) {
+						alert("索引为" + index + "的该值为" + Element);
+					})
+				})
+				//遍历Json数组
+				$("#btn7").click(function() {
+                    var arr={"姓名":"四月","年龄":"20"};
+					$.each(arr,function(index,element){
+						alert(index+":"+element);
+					})
+				})
+				//循环dom数组
+				$("#btn8").click(function(){
+					var arr=$(":text");
+					$.each(arr,function(index,element){
+						alert("第"+index+"行："+element.value);
+					})
+				})
+				//循环Jquery对象
+				$("#btn9").click(function(){
+					//使用了语法2
+					$(":text").each(function(index,element){
+						alert("第"+index+"行："+element.value);
+					})
+				})
+
+			})
+		</script>
+	</head>
+	<body>
+		<input style="width: 12rem;" type="text" value="天下兴亡匹夫有责" /><br />
+		<input style="width: 12rem;" type="text" value="革命尚未成功，同志仍需努力" /><br /><br />
+		<select style="width: 6.25rem;">
+			<option>广州</option>
+			<option>佛山</option>
+			<option>深圳</option>
+		</select><br /><br />
+		<select style="width: 6.25rem;">
+			<option>南京</option>
+			<option>苏州</option>
+			<option>扬州</option>
+		</select><br /><br />
+		<div>两个黄鹂鸣翠柳，</div><br />
+		<span>不过是一个<b>大傻逼</b></span><br /><br />
+		<input type="button" id="btn" value="使用remove函数删除所有父与子对象" /><br /><br />
+		<input type="button" id="btn2" value="使用empty函数删除父对象的所有子对象" /><br /><br />
+		<input type="button" id="btn3" value="使用append函数增加新的dom对象" /><br /><br />
+		<input type="button" id="btn4" value="获取第一个dom对象的属性值" /><br /><br />
+		<input type="button" id="btn5" value="可以给dom对象设置值" /><br /><br />
+		<input type="button" id="btn6" value="遍历普通数组" />
+		<input type="button" id="btn7" value="遍历Json数组" />
+		<input type="button" id="btn8" value="遍历dom数组" /><br /><br />
+		<input type="button" id="btn9" value="遍历Jquery数组"/>
+	</body>
+</html>
