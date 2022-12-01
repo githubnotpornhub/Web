@@ -1,0 +1,200 @@
+<html>
+
+<head>
+    <title>My Calculator</title>
+    <style type="text/css">
+        .bg {
+            width: 30%;
+            height: 450px;
+            background: rgb(168, 168, 168);
+            margin-left: 35%;
+            margin-left: 35%;
+            /*定义两边间距使计算器居中显示*/
+        }
+
+        .uup {
+            width: 100%;
+            height: 9%;
+            text-align: center;
+        }
+
+        .up {
+            width: 88%;
+            height: 12%;
+            border: solid 1px black;
+            margin: 3% 6% 1.5% 6%;
+            /*上右下左*/
+        }
+
+        .down {
+            width: 88%;
+            height: 70%;
+            border: solid 1px black;
+            margin: 1.5% 6% 3% 6%;
+        }
+
+        .logo {
+            width: 36%;
+            height: 100%;
+            margin-top: 0px;
+            margin-left: 0px;
+            /*边距*/
+            padding-left: 30px;
+            /*div与内容距离*/
+            background-color: white;
+            font-size: 28px;
+        }
+
+        .show {
+            width: 100%;
+            height: 100%;
+        }
+
+        .numtable {
+            width: 90%;
+            height: 90%;
+            margin: 5%;
+        }
+
+        .numtable tr td {
+            width: 25%;
+            height: 20%;
+            /*设置每个表格一样大小*/
+        }
+
+        .numtable input {
+            width: 80%;
+            height: 80%;
+            margin: 10%;
+            /*使按钮在表格中居中显示*/
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = initZero;
+        var str = new Array();//保留输入字符数组
+        var numstr = new Array();//数字栈
+        var charstr = new Array();//运算符栈
+        var flag = new Array();//负数标志位，true表示负数，与运算符栈相等
+        var buttonId = new Array("reset", "plus", "minus", "del", "num7", "num8", "num9", "multiply", "num4", "num5", "num6", "divide", "num1", "num2", "num3", "point", "leftbracket", "num0", "rightbracket", "equal");
+        //按钮ID名
+        function $(id) {
+            return document.getElementById(id);
+        }
+        function initZero() {
+            $("inputframe").value = 0;//结果显示框清零
+            initCE();//保存数据的栈和数组“清空”
+            addListener();//为每个按钮添加click事件监听器
+        }
+        function initCE() {
+            while (str.length != 0) {
+                str.pop();//删除数组最后一个元素
+            }
+            while (numstr.length != 0) {
+                numstr.shift();//删除数组第一个元素
+            }
+            while (charstr.length != 0) {
+                charstr.shift();//删除数组第一个元素
+            }
+            while (flag.length != 0) {
+                flag.shift();
+            }
+            charstr[0] = "0";//运算符栈先插入一个优先级最低的“0”元素
+            flag[0] = false;
+        }
+
+        function addListener() {
+            for (var i = 0; i < buttonId.length; i++) {
+                $(buttonId[i]).addEventListener("click", function () {//为数组里的每个元素都添加click事件监听器
+                    if (this.id == "equal") {//如果按下“=”按钮
+                        var result = getResult();
+                        if (str.length == 0) {
+                            $("inputframe").value = 0;
+                        } else {
+                            $("inputframe").value = showStr + "=" + result;
+                            initCE();
+                        }
+
+                    } else if (this.id == "reset") {//如果按下“CE”
+                        initCE();//进行复位。数字栈，运算符栈清空并插入“0”元素
+                        $("inputframe").value = "0";//显示结果框清空
+                    } else if (this.id == "del") {
+                        str.pop();//按下“del”，撤回
+                        $("inputframe").value = showStr();
+                    } else {//如果按下其他运算符和数字按钮，插入str数组中
+                        str.push(this.value);
+                        $("inputframe").value = showStr();//显示结果框中数字随着按钮按下不断增加
+                    }
+                });
+            }
+
+        }
+        function mul(num1, num2) {//JavaScript存在小数计算精度丢失的问题，通过升级降级移动小数点解决
+            var pointNum1 = 0;
+            var pointNum2 = 0;
+            var numStr1 = num1.toString();
+            var numStr2 = num2.toString();
+            if (numStr1.indexOf(".", 0) != -1) {
+                pointNum1 = numStr1.length - numStr1.indexOf(".", 0) - 1;//小数点个数
+                num1 = Number(numStr1.replace(".", ""));//移动小数点将实数升级
+            }
+            if (numStr2.indexOf(".", 0) != -1){
+                pointNum2 = numStr2.length - numStr2.indexOf(".",0)-1;
+                num2 = Number(numStr2.replace(".",""));
+            }
+
+        }
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <div class="bg">
+        <div class="uup">
+            <p class="logo">CASIO.</p>
+        </div>
+
+        <div class="up">
+            <input type="text" class="show" id="inputframe" disabled="false" />
+        </div>
+        <div class="down">
+            <table class="numtable">
+                <tr>
+                    <td><input type="button" value="CE" id="reset"></td>
+                    <td><input type="button" value="+  " id="plus"></td>
+                    <td><input type="button" value="-" id="minus"></td>
+                    <td><input type="button" value="DEL" id="del"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" id="num7" /> </td>
+                    <td><input type="button" value="8" id="num8" /> </td>
+                    <td><input type="button" value="9" id="num9" /> </td>
+                    <td><input type="button" value="*" id="multiply" /> </td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="4" id="num4" /></td>
+                    <td><input type="button" value="5" id="num5" /></td>
+                    <td><input type="button" value="6" id="num6" /></td>
+                    <td><input type="button" value="/" id="divide" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="1" id="num1" /></td>
+                    <td><input type="button" value="2" id="num2" /></td>
+                    <td><input type="button" value="3" id="num3" /></td>
+                    <td><input type="button" value="." id="point" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="(" id="leftbracket" /></td>
+                    <td><input type="button" value="0" id="num0" /></td>
+                    <td><input type="button" value=")" id="rightbracket" /></td>
+                    <td><input type="button" value="=" id="equal" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
