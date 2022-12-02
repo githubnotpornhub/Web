@@ -141,6 +141,16 @@
                 pointNum2 = numStr2.length - numStr2.indexOf(".",0)-1;
                 num2 = Number(numStr2.replace(".",""));
             }
+            var pointNum = pointNum1 + pointNum2;//运算结果小数点个数；
+            var resStr = (num1 * num2).toString();
+            if(pointNum != 0){
+                if(resStr.length>pointNum){//升级后运算结果位数比小数点位数多
+                    var num = resStr.length-pointNum;
+                    var sstr = resStr.split("");
+                    resStr = ""
+
+                }
+            }
 
         }
 
