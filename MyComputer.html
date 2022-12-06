@@ -1,4 +1,12 @@
 <html>
+<!--已知BUG
+    1.CE键无法使用
+    2.求出结果后DEL键无法只删除一位数，只能全部删除清空
+    3.点击等号后屏幕应当只显示运算结果
+    4.求出的结果继续进行运算操作时不显示在屏幕中
+    5.
+-->
+
 <head>
     <title>My Calculator</title>
     <style type="text/css">
@@ -203,16 +211,16 @@
         function charRes(num1, num2, ch) {//根据表达式返回运算结果
             var res = 0;
             switch (ch) {
-                case "+" :
+                case "+":
                     res = num2 + num1;
                     break;
-                case "-" :
+                case "-":
                     res = num2 - num1;
                     break;
-                case "*" :
+                case "*":
                     res = mul(num1, num2);
                     break;
-                case "/" :
+                case "/":
                     res = div(num1, num2);
                     break;
             }
@@ -232,13 +240,13 @@
                 case "*":
                     num = 2;
                     break;
-                case  "/":
+                case "/":
                     num = 3;
                     break;
-                case "(" :
+                case "(":
                     num = 4;
                     break;
-                case ")" :
+                case ")":
                     num = 5;
                     break;
                 case "0":
@@ -342,21 +350,21 @@
             while (charStr.length != 1) {
                 var ch = charStr.shift();
                 var num1 = numStr.shift();
-                if (ch == "-" && flag[0] == true){
+                if (ch == "-" && flag[0] == true) {
                     numStr.unshift(0);
                 }
                 flag.shift();
-                var num2 =numStr.shift();
-                numStr.unshift(charRes(num1,num2,ch));//向数组开头插入一个元素
+                var num2 = numStr.shift();
+                numStr.unshift(charRes(num1, num2, ch));//向数组开头插入一个元素
             }
             return numStr[0];
         }
-        function showStr(){
+        function showStr() {
             var equalStr = "";
-            if (str.length == 0){
+            if (str.length == 0) {
                 equalStr = "0";
             }
-            for (var i =0;i<str.length;i++){
+            for (var i = 0; i < str.length; i++) {
                 equalStr += str[i];
             }
             return equalStr;
@@ -366,49 +374,49 @@
 </head>
 
 <body>
-<div class="bg">
-    <div class="uup">
-        <p class="logo">CASIO.</p>
-    </div>
+    <div class="bg">
+        <div class="uup">
+            <p class="logo">CASIO.</p>
+        </div>
 
-    <div class="up">
-        <input type="text" class="show" id="inputframe" disabled="false"/>
+        <div class="up">
+            <input type="text" class="show" id="inputframe" disabled="false" />
+        </div>
+        <div class="down">
+            <table class="numtable">
+                <tr>
+                    <td><input type="button" value="CE" id="reset"></td>
+                    <td><input type="button" value="(" id="leftbracket"></td>
+                    <td><input type="button" value=")" id="rightbracket"></td>
+                    <td><input type="button" value="DEL" id="del"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="1" id="num1" /></td>
+                    <td><input type="button" value="2" id="num2" /></td>
+                    <td><input type="button" value="3" id="num3" /></td>
+                    <td><input type="button" value="+" id="plus" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="4" id="num4" /></td>
+                    <td><input type="button" value="5" id="num5" /></td>
+                    <td><input type="button" value="6" id="num6" /></td>
+                    <td><input type="button" value="-" id="minus" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" id="num7" /></td>
+                    <td><input type="button" value="8" id="num8" /></td>
+                    <td><input type="button" value="9" id="num9" /></td>
+                    <td><input type="button" value="." id="point" /></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="0" id="num0" /></td>
+                    <td><input type="button" value="*" id="multiply" /></td>
+                    <td><input type="button" value="/" id="divide" /></td>
+                    <td><input type="button" value="=" id="equal" /></td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div class="down">
-        <table class="numtable">
-            <tr>
-                <td><input type="button" value="CE" id="reset"></td>
-                <td><input type="button" value="+  " id="plus"></td>
-                <td><input type="button" value="-" id="minus"></td>
-                <td><input type="button" value="DEL" id="del"></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="7" id="num7"/></td>
-                <td><input type="button" value="8" id="num8"/></td>
-                <td><input type="button" value="9" id="num9"/></td>
-                <td><input type="button" value="*" id="multiply"/></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="4" id="num4"/></td>
-                <td><input type="button" value="5" id="num5"/></td>
-                <td><input type="button" value="6" id="num6"/></td>
-                <td><input type="button" value="/" id="divide"/></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="1" id="num1"/></td>
-                <td><input type="button" value="2" id="num2"/></td>
-                <td><input type="button" value="3" id="num3"/></td>
-                <td><input type="button" value="." id="point"/></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="(" id="leftbracket"/></td>
-                <td><input type="button" value="0" id="num0"/></td>
-                <td><input type="button" value=")" id="rightbracket"/></td>
-                <td><input type="button" value="=" id="equal"/></td>
-            </tr>
-        </table>
-    </div>
-</div>
 </body>
 
 </html>
